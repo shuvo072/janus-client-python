@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebSocket Video Call</title>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+  </head>
+  <body>
+    <h1>WebSocket Video Call</h1>
+    <button id="startCall">Start Call</button>
+    <pre id="messages"></pre>
+    <script>
+      const socket = io({
+        transports: ["websocket"],
+      });
+
+      socket.on("connect", function () {
+        console.log("Connected to server");
+      });
+
+      socket.on("disconnect", function () {
+        console.log("Disconnected from server");
+      });
+
+      document.getElementById("startCall").onclick = function () {
+        socket.send({
+          action: "start_call",
+        });
+      };
+
+      socket.on("response", function (data) {
+        document.getElementById("messages").textContent +=
+          JSON.stringify(data, null, 2) + "\n";
+      });
+
+      socket.on("janus_message", function (data) {
+        document.getElementById("messages").textContent += data.message + "\n";
+      });
+    </script>
+  </body>
+</html>

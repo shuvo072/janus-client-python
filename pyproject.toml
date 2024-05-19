@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "Janus Client"
+version = "0.1.0"
+description = ""
+authors = ["Mehadi Hasan Shuvo <mehadihasan.shuvo@brilliant.com.bd>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.7,<3.11"
+requests = "^2.31.0"
+websocket = "^0.2.1"
+janus-client = "^0.7.1"
+flask = "2"
+flask-socketio = "^5.3.6"
+gevent = "22.10.2"
+gevent-websocket = "^0.10.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
